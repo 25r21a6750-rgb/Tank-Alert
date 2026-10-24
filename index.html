@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TankAlert | Water Threshold Finder</title>
+  <link rel="stylesheet" href="style.CSS">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-icon">≋</div>
+      <div><h2>TankAlert</h2><small>SMART WATER SYSTEM</small></div>
+    </div>
+
+    <p class="menu-label">MAIN MENU</p>
+    <nav>
+      <button class="nav-link active" data-page="dashboard">
+        <span>▦</span> Dashboard
+      </button>
+      <button class="nav-link" data-page="water">
+        <span>◉</span> Water Level
+      </button>
+      <button class="nav-link" data-page="threshold">
+        <span>⌁</span> Threshold Finder
+      </button>
+      <button class="nav-link" data-page="alerts">
+        <span>♧</span> Alerts
+      </button>
+      <button class="nav-link" data-page="settings">
+        <span>⚙</span> Settings
+      </button>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="system-dot"></div>
+      <div><b>System Ready</b><small>Demo monitoring mode</small></div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">WATER MONITORING SYSTEM</p>
+        <h1 id="page-title">Dashboard</h1>
+      </div>
+      <div class="top-right">
+        <span class="live-dot"></span>
+        <span>Demo Mode</span>
+        <div class="avatar">TA</div>
+      </div>
+    </header>
+
+    <div class="content">
+      <!-- PAGE 1: DASHBOARD -->
+      <section class="page active" id="dashboard">
+        <div class="welcome">
+          <div>
+            <p class="eyebrow light">SMART WATER MANAGEMENT</p>
+            <h2>Monitor water. Prevent waste.</h2>
+            <p>Track tank levels and find safe water thresholds.</p>
+          </div>
+          <div class="water-art">💧</div>
+        </div>
+
+        <div class="stats">
+          <article class="stat-card">
+            <div class="stat-heading">Current Water Level <span>◉</span></div>
+            <h2 id="stat-level">65%</h2>
+            <p id="stat-litres">650 litres available</p>
+            <div class="progress"><div id="stat-bar" style="width:65%"></div></div>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-heading">Tank Capacity <span>▤</span></div>
+            <h2 id="stat-capacity">1,000 L</h2>
+            <p>Total storage capacity</p>
+            <div class="mini-line">● Tank information</div>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-heading">Water Status <span>⌁</span></div>
+            <h2 class="status-normal" id="stat-status">Normal</h2>
+            <p id="stat-status-desc">Within configured limits</p>
+            <div class="mini-line">● Threshold monitoring</div>
+          </article>
+        </div>
+
+        <div class="grid-two">
+          <article class="panel">
+            <div class="panel-heading">
+              <div><h3>Water Level Overview</h3><p>Current tank fill level</p></div>
+              <span class="pill">LIVE DEMO</span>
+            </div>
+            <div class="tank-layout">
+              <div class="tank">
+                <div class="tank-water" id="tank-water" style="height:65%">
+                  <span>WATER</span>
+                </div>
+              </div>
+              <div class="tank-info">
+                <h2 id="tank-percent">65%</h2>
+                <p>Tank filled</p>
+                <div class="legend"><i class="blue"></i> Current level</div>
+                <div class="legend"><i class="green"></i> Normal range</div>
+                <div class="legend"><i class="red"></i> Critical level</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-heading">
+              <div><h3>Threshold Summary</h3><p>Your configured safety limits</p></div>
+            </div>
+            <div class="threshold-row">
+              <div class="threshold-icon low">↓</div>
+              <div><b>Minimum level</b><small>Low-water warning</small></div>
+              <strong id="dash-min">20%</strong>
+            </div>
+            <div class="threshold-row">
+              <div class="threshold-icon high">↑</div>
+              <div><b>Maximum level</b><small>High-water warning</small></div>
+              <strong id="dash-max">90%</strong>
+            </div>
+            <button class="primary-btn full-btn" data-go="threshold">
+              Find Water Thresholds →
+            </button>
+          </article>
+        </div>
+
+        <article class="panel recent-panel">
+          <div class="panel-heading">
+            <div><h3>Recent Alerts</h3><p>Latest system notifications</p></div>
+            <button class="text-btn" data-go="alerts">View all →</button>
+          </div>
+          <div id="recent-alerts"></div>
+        </article>
+      </section>
+
+      <!-- PAGE 2: WATER LEVEL -->
+      <section class="page" id="water">
+        <div class="page-intro">
+          <h2>Water Level Monitoring</h2>
+          <p>Check the current water level and simulate different tank readings.</p>
+        </div>
+
+        <div class="grid-two">
+          <article class="panel center-panel">
+            <h3>Current Tank Level</h3>
+            <div class="big-reading" id="water-reading">65%</div>
+            <p id="water-litres">650 litres out of 1,000 litres</p>
+            <div class="large-progress"><div id="water-bar" style="width:65%"></div></div>
+            <span class="status-chip" id="water-chip">Normal level</span>
+          </article>
+
+          <article class="panel">
+            <h3>Simulate Water Reading</h3>
+            <p class="muted">Move the slider to test the threshold finder.</p>
+            <label for="level-input">Water level (%)</label>
+            <input type="range" id="level-input" min="0" max="100" value="65">
+            <div class="range-values"><span>0%</span><strong id="range-value">65%</strong><span>100%</span></div>
+            <button class="primary-btn full-btn" id="apply-level">Update Water Level</button>
+            <p class="hint">This slider uses sample data. A physical sensor is not connected.</p>
+          </article>
+        </div>
+
+        <article class="panel">
+          <h3>Tank Information</h3>
+          <div class="info-grid">
+            <div><small>Tank capacity</small><b id="water-capacity">1,000 L</b></div>
+            <div><small>Water available</small><b id="water-available">650 L</b></div>
+            <div><small>Empty capacity</small><b id="water-empty">350 L</b></div>
+          </div>
+        </article>
+      </section>
+
+      <!-- PAGE 3: THRESHOLD FINDER -->
+      <section class="page" id="threshold">
+        <div class="page-intro">
+          <h2>Water Reverse Threshold Finder</h2>
+          <p>Configure safe limits and identify the current water condition.</p>
+        </div>
+
+        <article class="panel">
+          <div class="panel-heading">
+            <div><h3>Configure Thresholds</h3><p>Set the minimum and maximum safe water levels.</p></div>
+            <span class="pill">SETTINGS</span>
+          </div>
+          <div class="form-grid">
+            <div class="field">
+              <label for="min-input">Minimum threshold (%)</label>
+              <input type="number" id="min-input" min="0" max="99" value="20">
+              <small>Warn when water drops below this level.</small>
+            </div>
+            <div class="field">
+              <label for="max-input">Maximum threshold (%)</label>
+              <input type="number" id="max-input" min="1" max="100" value="90">
+              <small>Warn when water rises above this level.</small>
+            </div>
+          </div>
+          <button class="primary-btn" id="save-threshold">Find & Apply Thresholds</button>
+          <p class="hint" id="threshold-message">Default thresholds: minimum 20%, maximum 90%.</p>
+        </article>
+
+        <article class="panel result-panel">
+          <h3>Threshold Finder Result</h3>
+          <div class="result-level">
+            <div><small>Current water level</small><h2 id="result-current">65%</h2></div>
+            <span class="status-chip" id="result-chip">Normal</span>
+          </div>
+          <div class="threshold-track">
+            <div class="track-fill" id="track-fill" style="width:65%"></div>
+            <span class="track-marker min-marker" id="min-marker" style="left:20%"></span>
+            <span class="track-marker max-marker" id="max-marker" style="left:90%"></span>
+          </div>
+          <div class="track-labels">
+            <span>0%</span><span id="track-min-label">Min 20%</span>
+            <span id="track-max-label">Max 90%</span><span>100%</span>
+          </div>
+          <div id="threshold-result" class="result-message">
+            Water level is within the safe threshold range.
+          </div>
+          <div class="info-grid">
+            <div><small>Minimum limit</small><b id="result-min">20%</b></div>
+            <div><small>Maximum limit</small><b id="result-max">90%</b></div>
+            <div><small>Available water</small><b id="result-litres">650 L</b></div>
+          </div>
+        </article>
+      </section>
+
+      <!-- PAGE 4: ALERTS -->
+      <section class="page" id="alerts">
+        <div class="page-intro">
+          <h2>Alerts & Notifications</h2>
+          <p>See water level warnings generated by the demo system.</p>
+        </div>
+        <article class="panel">
+          <div class="panel-heading">
+            <div><h3>Alert History</h3><p>Notifications update when water levels change.</p></div>
+            <button class="text-btn" id="clear-alerts">Clear history</button>
+          </div>
+          <div id="all-alerts"></div>
+        </article>
+      </section>
+
+      <!-- PAGE 5: SETTINGS -->
+      <section class="page" id="settings">
+        <div class="page-intro">
+          <h2>System Settings</h2>
+          <p>Configure the tank details used in calculations.</p>
+        </div>
+        <article class="panel">
+          <h3>Tank Configuration</h3>
+          <div class="field">
+            <label for="capacity-input">Tank capacity (litres)</label>
+            <input type="number" id="capacity-input" min="1" max="10000000" value="1000">
+          </div>
+          <div class="field">
+            <label for="name-input">Tank name</label>
+            <input type="text" id="name-input" value="Main Water Tank" maxlength="60">
+          </div>
+          <button class="primary-btn" id="save-settings">Save Settings</button>
+          <p id="settings-message" class="hint"></p>
+        </article>
+        <article class="panel">
+          <h3>About TankAlert</h3>
+          <p class="muted">TankAlert is a water monitoring dashboard concept that helps identify low and high water levels using configurable thresholds.</p>
+          <p class="hint">Demo version: readings are simulated in your browser. Real-time monitoring requires a compatible sensor and backend connection.</p>
+        </article>
+      </section>
+
+      <footer>TankAlert © 2026 · Smart Water Monitoring · Demo Project</footer>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
